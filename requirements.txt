@@ -1,0 +1,12 @@
+matplotlib==3.6.0
+numpy==1.23.2
+opencv_python==4.5.3.56
+pandas==1.5.0
+Pillow==7.0.0
+PyYAML==6.0
+scikit_learn==1.2.2
+shap==0.40.0
+torch==1.8.1+cu111
+torchvision==0.9.1+cu111
+tqdm==4.64.1
+transformers==4.12.3

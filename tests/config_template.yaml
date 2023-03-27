@@ -1,0 +1,97 @@
+# global configuration
+dataset: cifar100               # dataset, support nus_wide, cifar10, cifar100, cinic, bhi, yahoo
+cuda: 1                         # whether to use GPU, 1 (use) or 0
+log: temp                       # filename of the log, the log is saved in "tests/result/"
+debug: false                    # whether to output log of debugging
+
+# data configuration
+target_train_size: 50000        # training size for the main task, -1 means using all training data in the dataset
+target_test_size: 10000         # testing size for the main task, -1 means using all testing data in the dataset
+
+# save configuration
+save_model: 0                   # whether to save model parameters during training, 1 or 0
+                                # If 1, the results are saved in "tests/checkpoints/xx/" (xx refers to dataset)
+
+# load configuration
+load_model: 1                   # whether to load model parameters saved in file, 1 or 0
+
+# global model configuration
+n_passive_party: 1              # number of passive parties
+target_batch_size: 128
+target_epochs: 100
+# passive party configuration
+passive_bottom_model: alexnet
+passive_bottom_gamma: 0.1
+passive_bottom_wd: 0.0001
+passive_bottom_momentum: 0.9
+passive_bottom_lr: 0.1          # learning rate for bottom model of the active party
+passive_bottom_stone: [50,80]
+# active party configuration
+# active bottom model configuration
+active_bottom_model: alexnet
+active_bottom_gamma: 0.1
+active_bottom_wd: 0.0001
+active_bottom_momentum: 0.9
+active_bottom_lr: 0.1
+active_bottom_stone: [50,80]
+# active top model configuration
+active_top_trainable: 0         # 1 means VFL with model splitting, 0 means VFL without model splitting
+                                # the following active top model configurations are invalid only when active_top_trainable is 1
+active_top_model: alexnet
+active_top_gamma: 0.1
+active_top_wd: 0.0001
+active_top_momentum: 0.9
+active_top_lr: 0.1
+active_top_stone: [50,80]
+
+# backdoor attack global configuration
+backdoor: no                    # the type of backdoor attack
+                                # support no (Normal training), poison (Data poisoning), g-r (Gradient replacement), baseline (Baseline attack), and lr_ba (LR-BA)
+backdoor_label: 0               # the backdoor label
+backdoor_train_size: 10000      # training size for the backdoor task
+backdoor_test_size: 10000       # testing size for the backdoor task
+train_label_size: 40            # size of auxiliary labeled data
+train_label_non_iid: ~          # the alpha of Dirichlet distribution for unbalanced auxiliary data
+                                # ~ means balanced auxiliary data
+
+# Gradient replacement configuration
+g_r_amplify_ratio: 1            # amplify ratio used in gradient replacement attack
+
+# LR-BA attack configuration
+  # configuration of model completion
+    # configuration for mix_match
+lr_ba_top_lr: 0.01
+lr_ba_top_momentum: 0.9
+lr_ba_top_wd: 0.0001
+lr_ba_top_epochs: 50
+lr_ba_top_batch_size: 64
+lr_ba_top_train_iteration: 1024
+lr_ba_top_T: 0.8
+lr_ba_top_alpha: 0.75
+lr_ba_ema_decay: 0.999
+    # configuration for mix_text
+lr_ba_top_margin: 0.7
+lr_ba_top_lambda_u: 1
+lr_ba_top_lambda_u_hinge: 0
+lr_ba_train_aug: false
+lr_ba_top_temp_change: 1000000
+lr_ba_top_co: false
+lr_ba_top_separate_mix: false
+lr_ba_top_mix_layers_set: [7, 9, 12]
+lr_ba_top_batch_size_u: 4
+  # configuration of backdoor representation generation
+lr_ba_generate_lr: 0.01
+lr_ba_generate_epochs: 100
+  # configuration of model fine-tuning
+lr_ba_finetune_lr: 0.01
+lr_ba_finetune_epochs: 100
+
+# defense configuration
+noisy_gradients: false           # whether to use noisy gradients defense
+noisy_scale: 0.0001              # the noise scale
+
+norm_clip: false                 # whether to use norm clipping defense
+clip_threshold: 5                # the clip threshold
+
+gradient_compression: false      # whether to use gradient compression defense
+gc_percent: 0.5                  # the gradient compression percent

@@ -1,0 +1,11 @@
+tests/checkpoints/*/*
+tests/checkpoints/
+!tests/checkpoints/*/.gitkeep
+tests/data/
+tests/result/*
+!tests/result/.gitkeep
+tests/config/
+tests/fig/
+.idea/
+*/__pycache__/
+*/*/__pycache__/

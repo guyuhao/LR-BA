@@ -1,0 +1,87 @@
+# global configuration
+dataset: yahoo
+cuda: 1
+log: vfl_backdoor_compare_yahoo                 # 输出日志的文件名,日志保存在tests/result/temp
+debug: false
+
+# data configuration
+target_train_size: 50000
+target_test_size: 20000
+
+# save configuration
+save_model: 1
+save_data: 0
+
+# load configuration
+load_target: 0
+load_data: 0
+load_model: 0
+
+# global model configuration
+n_passive_party: 1
+target_batch_size: 16
+target_epochs: 25
+# passive party configuration
+passive_bottom_model: bert
+passive_bottom_gamma: 0.1
+passive_bottom_wd: 0.0005
+passive_bottom_momentum: 0.9
+passive_bottom_lr: 0.001
+passive_bottom_stone: [15,25]
+# active party configuration
+# active bottom model configuration
+active_bottom_model: bert
+active_bottom_gamma: 0.1
+active_bottom_wd: 0.0005
+active_bottom_momentum: 0.9
+active_bottom_lr: 0.001
+active_bottom_stone: [15,25]
+# active top model configuration
+active_top_trainable: 1
+active_top_model: fcn
+active_top_gamma: 0.1
+active_top_wd: 0.0005
+active_top_momentum: 0.9
+active_top_lr: 0.001
+active_top_stone: [15,25]
+
+# backdoor attack global configuration
+backdoor: lr_ba
+backdoor_label: 0
+backdoor_train_size: 5000
+backdoor_test_size: 10000
+train_label_size: 100
+
+# Gradient replacement configuration
+g_r_amplify_ratio: 10
+
+# LR-BA attack configuration
+lr_ba_alpha: 0.75
+lr_ba_active: false
+lr_ba_active_r_min: 1.0
+lr_ba_active_r_max: 5.0
+lr_ba_active_reset: 1.0
+lr_ba_top_lr: 0.001
+lr_ba_top_momentum: 0.9
+lr_ba_top_wd: 0.0001
+lr_ba_top_epochs: 10
+lr_ba_top_batch_size: 2
+lr_ba_top_train_iteration: 1000
+lr_ba_top_T: 0.5
+lr_ba_top_alpha: 16
+lr_ba_generate_lr: 0.01
+lr_ba_generate_epochs: 200
+lr_ba_ema_decay: 0.999
+lr_ba_finetune_lr: 0.001
+lr_ba_finetune_epochs: 25
+
+lr_ba_top_margin: 0.7
+lr_ba_top_lambda_u: 1
+lr_ba_top_lambda_u_hinge: 0
+lr_ba_train_aug: false
+lr_ba_top_temp_change: 1000000
+lr_ba_top_co: false
+lr_ba_top_separate_mix: false
+lr_ba_top_mix_layers_set: [7, 9, 12]
+lr_ba_top_batch_size_u: 4
+
