@@ -1,4 +1,4 @@
-# LR-BA
+# LR-BA: Backdoor attack against vertical federated learning using local latent representations
 This repository contains code for our paper: "LR-BA: Backdoor attack against vertical federated learning using local latent representations".
 ***
 ## Code usage: 
